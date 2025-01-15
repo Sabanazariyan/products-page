@@ -1,6 +1,10 @@
 const searchInput = document.getElementById("search-input");
 const products = document.querySelectorAll(".product-item");
 const buttons = document.querySelectorAll(".filter");
+//اول دیو حاوی باتن را انتخاب میکنیم
+const priceDiv = document.getElementById("search-price");
+//بعد خود باتن را از داخل دیو انتخاب میکنیم
+const priceButton = priceDiv.querySelector("button");
 
 const changeClass = (filter) => {
   buttons.forEach((button) => {
@@ -50,8 +54,15 @@ const filterHandler = () => {
     }
   });
 };
-searchInput.addEventListener("keyup", searchHandler);
+
+const searchPriceHandler = (event) => {
+  //از باتن سرچ به پرنت یعنی دیو مادر دسترسی پیدا میکنیم و از طریق دیو به اولین چیلدرن یعنی اینپوت دسترسی پیدا میکنیم
+  const searchPrice = event.target.parentElement.children[0].value;
+  console.log(searchPrice);
+};
 
 buttons.forEach((button) => {
   button.addEventListener("click", filterHandler);
 });
+searchInput.addEventListener("keyup", searchHandler);
+priceButton.addEventListener("click", searchPriceHandler);
