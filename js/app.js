@@ -2,6 +2,17 @@ const searchInput = document.getElementById("search-input");
 const products = document.querySelectorAll(".product-item");
 const buttons = document.querySelectorAll(".filter");
 
+const changeClass = (filter) => {
+  buttons.forEach((button) => {
+    //فیلتر دوم چیزی است که کاربر انتخاب کرده
+    if (button.dataset.filter === filter) {
+      button.classList.add("selected");
+    } else {
+      button.classList.remove("selected");
+    }
+  });
+};
+
 const searchHandler = (event) => {
   //مقداری که کاربر وارد کرده
   const searchValue = event.target.value.toLowerCase().trim();
@@ -20,6 +31,8 @@ const searchHandler = (event) => {
 };
 const filterHandler = () => {
   const filter = event.target.dataset.filter;
+  //فانکشن تغییر استایل باتن انتخاب شده
+  changeClass(filter);
   products.forEach((product) => {
     const category = product.dataset.category;
     if (filter === "all") {
